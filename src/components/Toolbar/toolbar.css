@@ -1,0 +1,25 @@
+.toolbar-cont {
+  height: 100%;
+  width: 300px;
+  margin: 0;
+  padding: 20px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+  left: 0;
+}
+
+.size {
+  margin-top: 30px;
+}
+
+.size-picker {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 50px);
+  gap: 10px;
+}
+
+.size-picker > button {
+  border: none;
+}

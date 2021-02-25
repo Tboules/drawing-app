@@ -30,6 +30,7 @@ export const CanvasProvider = ({ children }) => {
     context.strokeStyle = color;
     context.lineWidth = drawWidth;
     contextRef.current = context;
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

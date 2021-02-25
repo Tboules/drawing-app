@@ -6,14 +6,11 @@ const Canvas = () => {
 
   return (
     <canvas
+      style={{ marginLeft: "300px" }}
       ref={canvasRef}
       onMouseDown={startDrawing}
       onMouseMove={draw}
       onMouseUp={finishDrawing}
-      style={{
-        boxShadow: "inset 3px 0px 3px 0px rgba(0,0,0,0.6)",
-        marginLeft: "300px",
-      }}
     />
   );
 };

@@ -9,7 +9,7 @@ import React, {
 const CanvasContext = createContext(null);
 
 export const CanvasProvider = ({ children }) => {
-  const [color, setColor] = useState("#000");
+  const [color, setColor] = useState("black");
   const [lineShape, setLineShape] = useState("round");
   const [drawWidth, setDrawWidth] = useState(5);
   const [isDrawing, setIsDrawing] = useState(false);
@@ -30,6 +30,12 @@ export const CanvasProvider = ({ children }) => {
     context.strokeStyle = color;
     context.lineWidth = drawWidth;
     contextRef.current = context;
+  }, []);
+
+  useEffect(() => {
+    contextRef.current.strokeStyle = color;
+    contextRef.current.lineWidth = drawWidth;
+    contextRef.current.lineCap = lineShape;
   }, [color, drawWidth, lineShape]);
 
   const startDrawing = ({ nativeEvent }) => {
@@ -51,6 +57,13 @@ export const CanvasProvider = ({ children }) => {
     setIsDrawing(false);
   };
 
+  const resetDrawing = () => {
+    const canvas = canvasRef.current;
+    const context = canvas.getContext("2d");
+    context.fillStyle = "white";
+    context.fillRect(0, 0, canvas.width, canvas.height);
+  };
+
   return (
     <CanvasContext.Provider
       value={{
@@ -66,6 +79,7 @@ export const CanvasProvider = ({ children }) => {
         finishDrawing,
         draw,
         canvasRef,
+        resetDrawing,
       }}
     >
       {children}
